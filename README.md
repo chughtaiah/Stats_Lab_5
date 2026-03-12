@@ -1,109 +1,85 @@
-# AI Stats Lab
+# AI Statistics Lab – Continuous Random Variables
 
-Topics:
+This lab explores probability theory concepts used in AI/ML:
 
-- Random variables
-- CDF probabilities
-- Valid PDFs
-- Exponential distribution
-- Gaussian distribution
-- Monte Carlo verification
-- PDF plotting
+• CDF and PDF  
+• Continuous distributions  
+• Exponential distribution  
+• Gaussian distribution  
+• Conditional probability  
+• Simulation and numerical verification  
 
-Allowed libraries:
+You will implement **two problems**.
 
-- numpy
-- scipy
-- matplotlib
-- math
-
-Do not change function names.
+The goal is to connect **analytical probability formulas** with **simulation-based estimation**.
 
 ---
 
-# Setup
+# Question 1 — CDF, PDF, and Probabilities (Exponential Distribution)
 
-```bash
-pip install numpy scipy matplotlib pytest
-```
+A random variable has CDF:
 
----
+F_X(x) = (1 − e^{-λx})u(x)
 
-# Run Autograder
+where  
+λ > 0 and u(x) is the unit step function.
 
-```bash
-pytest -q test_AIstats_lab.py
-```
+### Tasks
 
----
+1. Derive the **PDF from the CDF**.
+2. Write a function that returns the PDF.
+3. Write a function that computes
 
-# Question 1 — CDF Probabilities
+P(a < X < b)
 
-Given the CDF
+using the PDF integral.
+4. Write a function that **simulates exponential samples** and estimates the same probability.
 
-F_X(x) = (1 - e^{-x})u(x)
+### Expected Result
 
-Compute analytically:
+For λ = 1, a = 2, b = 5:
 
-1. P(X > 5)
-2. P(X < 5)
-3. P(3 < X < 7)
-
-Then verify P(X>5) using Monte Carlo simulation.
-
-Return both analytical and simulated values.
+P(2 < X < 5) = e^{-2} − e^{-5}
 
 ---
 
-# Question 2 — PDF Validation and Plot
+# Question 2 — Bayesian Classification (Gaussian Model)
 
-Consider the candidate PDF
+Two groups of swimmers compete:
 
-f(x) = 2x e^{-x²},  x ≥ 0
+Group A (fast swimmers)  
+Group B (slow swimmers)
 
-Tasks:
+Their finishing time distributions are:
 
-1. Verify non-negativity
-2. Compute integral from 0 to ∞
-3. Determine if the function is a valid PDF
-4. Plot the PDF on [0,3]
+Group A  
+X ~ N(40, 4)
 
-Return:
+Group B  
+X ~ N(45, 4)
 
-- integral value
-- validity (True/False)
+Prior probabilities
+
+P(A) = 0.3  
+P(B) = 0.7
+
+A swimmer finishes in **42 seconds**.
+
+### Tasks
+
+1. Implement a **Gaussian PDF function**.
+2. Compute the likelihood
+
+f_{X|A}(42), f_{X|B}(42)
+
+3. Use **Bayes rule** to compute
+
+P(B | X = 42)
+
+4. Write a function that **simulates swimmers** and estimates the same posterior probability.
 
 ---
 
-# Question 3 — Exponential Distribution
+# Instructions
 
-Let
-
-X ~ Exp(λ = 1)
-
-Compute:
-
-1. P(X > 5)
-2. P(1 < X < 3)
-
-Then estimate both probabilities using Monte Carlo simulation.
-
-Return analytical and simulated results.
-
----
-
-# Question 4 — Gaussian Distribution
-
-Let
-
-X ~ N(10, 2²)
-
-Tasks:
-
-1. Standardize the variable
-2. Compute P(X ≤ 12)
-3. Compute P(8 < X < 12)
-
-Then simulate 100000 samples and estimate the probabilities.
-
-Return analytical and simulated results.
+Implement functions in
