@@ -1,38 +1,63 @@
-import AI_stats_lab as A
-import math
+import numpy as np
+
+from AI_stats_lab import (
+    exponential_pdf,
+    exponential_interval_probability,
+    simulate_exponential_probability,
+    gaussian_pdf,
+    posterior_probability
+)
 
 
-def test_cdf():
+# -------------------------------------
+# Q1 – PDF correctness
+# -------------------------------------
 
-    a1, a2, a3, sim = A.cdf_probabilities()
-
-    assert abs(a1 - math.exp(-5)) < 1e-6
-    assert abs(a2 - (1 - math.exp(-5))) < 1e-6
-    assert abs(a3 - (math.exp(-3) - math.exp(-7))) < 1e-6
-    assert abs(sim - a1) < 0.01
-
-
-def test_pdf():
-
-    integral, valid = A.pdf_validation_plot()
-
-    assert abs(integral - 1) < 1e-3
-    assert valid is True
+def test_exponential_pdf():
+    val = exponential_pdf(1)
+    expected = np.exp(-1)
+    assert np.isclose(val, expected, atol=1e-6)
 
 
-def test_exponential():
+# -------------------------------------
+# Q1 – Analytical probability
+# -------------------------------------
 
-    a1, a2, s1, s2 = A.exponential_probabilities()
+def test_exponential_interval():
+    expected = np.exp(-2) - np.exp(-5)
+    result = exponential_interval_probability(2,5)
+    assert np.isclose(result, expected, atol=1e-6)
 
-    assert abs(a1 - math.exp(-5)) < 1e-6
-    assert abs(a2 - (math.exp(-1) - math.exp(-3))) < 1e-6
-    assert abs(s1 - a1) < 0.02
+
+# -------------------------------------
+# Q1 – Simulation check
+# -------------------------------------
+
+def test_exponential_simulation():
+    result = simulate_exponential_probability(2,5)
+    expected = np.exp(-2) - np.exp(-5)
+    assert abs(result - expected) < 0.02
 
 
-def test_gaussian():
+# -------------------------------------
+# Q2 – Gaussian PDF
+# -------------------------------------
 
-    a1, a2, s1, s2 = A.gaussian_probabilities()
+def test_gaussian_pdf():
+    val = gaussian_pdf(40,40,2)
+    expected = 1/(np.sqrt(2*np.pi)*2)
+    assert np.isclose(val, expected, atol=1e-6)
 
-    assert 0 <= a1 <= 1
-    assert 0 <= a2 <= 1
-    assert abs(s1 - a1) < 0.02
+
+# -------------------------------------
+# Q2 – Posterior probability
+# -------------------------------------
+
+def test_posterior():
+    result = posterior_probability(42)
+
+    num = 0.7*np.exp(-(42-45)**2/4)
+    den = 0.3*np.exp(-(42-40)**2/4) + num
+    expected = num/den
+
+    assert np.isclose(result, expected, atol=1e-3)
