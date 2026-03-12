@@ -80,6 +80,3 @@ P(B | X = 42)
 
 ---
 
-# Instructions
-
-Implement functions in
