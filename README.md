@@ -1,6 +1,6 @@
-# AI Statistics Lab – Continuous Random Variables
+# Statistics Lab – Continuous Random Variables
 
-This lab explores probability theory concepts used in AI/ML:
+This lab explores probability theory concepts used in data-science:
 
 • CDF and PDF  
 • Continuous distributions  
