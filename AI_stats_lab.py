@@ -1,140 +1,63 @@
-"""
-AI Stats Lab
-Random Variables and Distributions
-"""
-
 import numpy as np
-import math
-import matplotlib.pyplot as plt
-from scipy.stats import norm
-from scipy.integrate import quad
 
 
-# =========================================================
-# QUESTION 1 — CDF Probabilities
-# =========================================================
+# -------------------------------------------------
+# Question 1 – Exponential Distribution
+# -------------------------------------------------
 
-def cdf_probabilities():
+def exponential_pdf(x, lam=1):
     """
-    STEP 1
-    Compute analytically
+    Return PDF of exponential distribution.
 
-        P(X > 5)
-        P(X < 5)
-        P(3 < X < 7)
-
-    STEP 2
-    Simulate 100000 samples from Exp(1)
-
-    STEP 3
-    Estimate P(X > 5) using simulation
-
-    RETURN
-
-        analytic_gt5
-        analytic_lt5
-        analytic_interval
-        simulated_gt5
+    f(x) = lam * exp(-lam*x) for x >= 0
     """
+    pass
 
-    raise NotImplementedError
 
-
-# =========================================================
-# QUESTION 2 — PDF Validation and Plot
-# =========================================================
-
-def pdf_validation_plot():
+def exponential_interval_probability(a, b, lam=1):
     """
-    Candidate PDF
-
-        f(x) = 2x e^{-x^2} for x >= 0
-
-    STEP 1
-    Verify non-negativity
-
-    STEP 2
-    Compute
-
-        integral_0^∞ f(x) dx
-
-    STEP 3
-    Determine if valid PDF
-
-    STEP 4
-    Plot f(x) on [0,3]
-
-    RETURN
-
-        integral_value
-        is_valid_pdf
+    Compute P(a < X < b) using analytical formula.
     """
+    pass
 
-    raise NotImplementedError
 
-
-# =========================================================
-# QUESTION 3 — Exponential Distribution
-# =========================================================
-
-def exponential_probabilities():
+def simulate_exponential_probability(a, b, n=100000):
     """
-    X ~ Exp(1)
-
-    STEP 1
-    Compute analytically
-
-        P(X > 5)
-        P(1 < X < 3)
-
-    STEP 2
-    Simulate 100000 samples
-
-    STEP 3
-    Estimate probabilities using simulation
-
-    RETURN
-
-        analytic_gt5
-        analytic_interval
-        simulated_gt5
-        simulated_interval
+    Simulate exponential samples and estimate
+    P(a < X < b).
     """
+    pass
 
-    raise NotImplementedError
 
+# -------------------------------------------------
+# Question 2 – Bayesian Classification
+# -------------------------------------------------
 
-# =========================================================
-# QUESTION 4 — Gaussian Distribution
-# =========================================================
-
-def gaussian_probabilities():
+def gaussian_pdf(x, mu, sigma):
     """
-    X ~ N(10,2^2)
-
-    STEP 1
-    Standardize variable
-
-        Z = (X - 10)/2
-
-    STEP 2
-    Compute analytically
-
-        P(X ≤ 12)
-        P(8 < X < 12)
-
-    STEP 3
-    Simulate 100000 samples
-
-    STEP 4
-    Estimate probabilities
-
-    RETURN
-
-        analytic_le12
-        analytic_interval
-        simulated_le12
-        simulated_interval
+    Return Gaussian PDF.
     """
+    pass
 
-    raise NotImplementedError
+
+def posterior_probability(time):
+    """
+    Compute P(B | X = time)
+    using Bayes rule.
+
+    Priors:
+    P(A)=0.3
+    P(B)=0.7
+
+    Distributions:
+    A ~ N(40,4)
+    B ~ N(45,4)
+    """
+    pass
+
+
+def simulate_posterior_probability(time, n=100000):
+    """
+    Estimate P(B | X=time) using simulation.
+    """
+    pass
